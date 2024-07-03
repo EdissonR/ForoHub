@@ -3,9 +3,9 @@ package Challenge.foro.domain;
 public enum Estatus
 {
 
-    PENDIENTE,
+    ACTIVO,
 
-    EN_PROCESO,
+    PROGRESO,
 
     FINALIZADO,
 }
