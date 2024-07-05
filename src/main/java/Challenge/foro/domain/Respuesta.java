@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "respuesta")
 public class Respuesta {
 
 
@@ -28,16 +29,16 @@ public class Respuesta {
         @ManyToOne
         @JoinColumn(name = "autor_id")
         @NotNull
-        private Usuario autor;
+        private Autor autor;
 
     //GETTER AND SETTER
 
 
-        public Usuario getAutor() {
+        public Autor getAutor() {
             return autor;
         }
 
-        public void setAutor(Usuario autor) {
+        public void setAutor(Autor autor) {
             this.autor = autor;
         }
 

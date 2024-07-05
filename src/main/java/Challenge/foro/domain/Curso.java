@@ -1,15 +1,12 @@
 package Challenge.foro.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "cursos")
 public class Curso {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +18,17 @@ public class Curso {
     @NotNull
     private Categoria categoria;
 
-    //GENERAR SETTER AND GETTER
+    // Constructores
+    public Curso() {
+        // Constructor vacío requerido por JPA
+    }
 
+    public Curso(String nombre, Categoria categoria) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }
 
+    // Getters y Setters
     public long getId() {
         return id;
     }

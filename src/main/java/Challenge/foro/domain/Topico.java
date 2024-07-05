@@ -3,46 +3,52 @@ package Challenge.foro.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
-
+import java.util.List;
+@Getter
 @Entity
+@Table(name = "topico")
 public class Topico {
 
-
-    //DEFINIENDO LOS ATRIBUTOS DEL TOPICO
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Getter
+    @Setter
     private long id;
 
     @NotBlank
+    @Getter
+    @Setter
     private String titulo;
 
     @NotBlank
+    @Getter
+    @Setter
     private String mensaje;
-
-    @NotNull
-    private LocalDateTime fechaCreacion;
-
-    @Enumerated(EnumType.STRING)
-    private Estatus estatus;
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
-    private Usuario autor;
+    @NotNull
+    @Getter
+    @Setter
+    private Autor autor;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id")
-    private Curso curso;
+    @OneToMany(mappedBy = "topico")
+    @Getter
+    @Setter
+    private List<Respuesta> respuestas;
 
-    private Respuesta repuesta;
+    @NotNull
+    @Getter
+    @Setter
+    private LocalDateTime fechaDeCreacion;
 
+    public Topico() {
 
-
-    //GENERACION DE LOS SETTER AND GETTER
-
+    }
 
     public long getId() {
         return id;
@@ -52,44 +58,12 @@ public class Topico {
         this.id = id;
     }
 
-    public Respuesta getRepuesta() {
-        return repuesta;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setRepuesta(Respuesta repuesta) {
-        this.repuesta = repuesta;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-
-    public Usuario getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Usuario autor) {
-        this.autor = autor;
-    }
-
-    public Estatus getEstatus() {
-        return estatus;
-    }
-
-    public void setEstatus(Estatus estatus) {
-        this.estatus = estatus;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getMensaje() {
@@ -100,11 +74,42 @@ public class Topico {
         this.mensaje = mensaje;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public Autor getAutor() {
+        return autor;
     }
 
-    public void setTitulo(String titulo) {
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public List<Respuesta> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
+
+    public LocalDateTime getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
+    }
+
+    public Topico(long id, String titulo, String mensaje, Autor autor, List<Respuesta> respuestas, LocalDateTime fechaDeCreacion) {
+        this.id = id;
         this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.autor = autor;
+        this.respuestas = respuestas;
+        this.fechaDeCreacion = fechaDeCreacion;
     }
 }
+
+
+
+
+
+

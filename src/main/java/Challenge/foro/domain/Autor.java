@@ -6,8 +6,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+
+@Table(name = "usuarios")
 @Entity
-public class Usuario {
+public class Autor {
 
 
     @Id

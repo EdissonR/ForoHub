@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
+@Table(name = "perfiles")
 public class Perfil {
 
     @Id
@@ -16,7 +17,7 @@ public class Perfil {
     private String nombre;
 
     @ManyToMany(mappedBy = "perfiles")
-    private List<Usuario> usuarios;
+    private List<Autor> autors;
 
     // Getters y Setters
 
@@ -36,11 +37,11 @@ public class Perfil {
         this.nombre = nombre;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public List<Autor> getUsuarios() {
+        return autors;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuarios(List<Autor> autors) {
+        this.autors = autors;
     }
 }
